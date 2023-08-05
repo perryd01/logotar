@@ -31,13 +31,15 @@
     },
     "team_fonts": {
       "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::team-font.team-font"
+      "relation": "manyToMany",
+      "target": "api::team-font.team-font",
+      "inversedBy": "teams"
     },
     "team_colors": {
       "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::team-color.team-color"
+      "relation": "manyToMany",
+      "target": "api::team-color.team-color",
+      "inversedBy": "teams"
     }
   }
 }

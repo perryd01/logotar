@@ -17,6 +17,12 @@
     },
     "link": {
       "type": "string"
+    },
+    "teams": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::team.team",
+      "mappedBy": "team_fonts"
     }
   }
 }

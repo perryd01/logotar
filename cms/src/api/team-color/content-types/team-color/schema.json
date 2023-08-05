@@ -17,6 +17,12 @@
     "value": {
       "type": "string",
       "regex": "^#(?:[0-9a-fA-F]{3}){1,2}$"
+    },
+    "teams": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::team.team",
+      "mappedBy": "team_colors"
     }
   }
 }
