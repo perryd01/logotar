@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "team_fonts",
+  "info": {
+    "singularName": "team-font",
+    "pluralName": "team-fonts",
+    "displayName": "TeamFont"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "link": {
+      "type": "string"
+    },
+    "teams": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::team.team",
+      "mappedBy": "team_fonts"
+    }
+  }
+}

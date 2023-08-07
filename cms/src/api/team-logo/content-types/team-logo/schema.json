@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "team_logos",
+  "info": {
+    "singularName": "team-logo",
+    "pluralName": "team-logos",
+    "displayName": "TeamLogo",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "isPrimary": {
+      "type": "boolean"
+    }
+  }
+}
