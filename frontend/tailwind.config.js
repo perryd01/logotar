@@ -5,6 +5,16 @@ export default {
 		extend: {
 			fontFamily: {
 				poppins: ['Poppins', 'sans-serif']
+			},
+			colors: {
+				logotar: {
+					primary: '#F8485E',
+					gray: {
+						50: '#FAFAFA',
+						100: '#B9B9B9'
+					},
+					dark: '#1D1D1D'
+				}
 			}
 		}
 	},
