@@ -1,5 +1,10 @@
-<script>
+<script lang="ts">
+	import Footer from '$lib/components/Footer.svelte';
+	import Header from '$lib/components/Header.svelte';
 	import '../app.css';
+	import type { LayoutData } from './$types';
+
+	export let data: LayoutData;
 </script>
 
 <svelte:head>
@@ -11,6 +16,10 @@
 	/>
 </svelte:head>
 
-<div class="font-poppins">
-	<slot />
+<div class="font-poppins flex flex-col justify-between min-h-[100svh]">
+	<Header />
+	<main class="grow max-w-screen-xl mx-auto w-full">
+		<slot />
+	</main>
+	<Footer version={data.version} />
 </div>
