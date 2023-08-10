@@ -28,7 +28,7 @@
 <footer>
 	<div class="footerContent">
 		<a href="/">logotar.schdesgin.hu</a>
-		<ul class="flex flex-row gap-4 text-logotar-gray-100">
+		<ul class="flex flex-col sm:flex-row gap-1 items-center sm:gap-4 text-logotar-gray-100">
 			{#each routes as r}
 				<li>
 					<a href={r.path}>{r.name}</a>
