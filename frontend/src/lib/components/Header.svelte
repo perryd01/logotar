@@ -47,14 +47,14 @@
 			path: '/kereses'
 		}
 	];
-
-	$: console.log(show);
 </script>
 
 <header class:scrolled={show} class="bg-white text-2xl font-medium p-2">
 	<div class="container items-center mx-auto p-2 rounded-lg flex flex-row justify-between">
 		<a href="/" class="flex flex-row gap-2 items-center">
-			{@html logo}
+			<div class="h-8 aspect-square">
+				{@html logo}
+			</div>
 			<span>logotár</span>
 		</a>
 		<nav>
