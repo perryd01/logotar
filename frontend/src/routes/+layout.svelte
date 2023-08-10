@@ -18,7 +18,7 @@
 
 <div class="font-poppins flex flex-col justify-between min-h-[100svh]">
 	<Header />
-	<main class="grow max-w-screen-xl mx-auto w-full">
+	<main class="grow max-w-screen-xl mx-auto w-full px-4 my-16">
 		<slot />
 	</main>
 	<Footer version={data.version} />
