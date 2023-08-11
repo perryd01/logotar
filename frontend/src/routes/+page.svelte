@@ -1,6 +1,5 @@
 <script>
 	import CategoryPreviewSection from '$lib/components/CategoryPreviewSection.svelte';
-	import LogoElement from '$lib/components/LogoElement.svelte';
 	import { Search } from 'lucide-svelte';
 </script>
 
