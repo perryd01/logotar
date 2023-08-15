@@ -105,9 +105,15 @@ importers:
 
   apps/frontend:
     dependencies:
+      config:
+        specifier: workspace:*
+        version: link:../../packages/config
       lucide-svelte:
         specifier: ^0.265.0
         version: 0.265.0(svelte@4.0.5)
+      ui:
+        specifier: workspace:*
+        version: link:../../packages/ui
     devDependencies:
       '@sveltejs/adapter-auto':
         specifier: ^2.0.0

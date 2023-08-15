@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { ComponentProps, ComponentType } from 'svelte';
-	import TeamElement from '$lib/components/TeamElement.svelte';
+	import { TeamElement } from 'ui';
 
 	type DeepRequired<T> = {
 		[K in keyof T]-?: T[K];

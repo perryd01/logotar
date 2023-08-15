@@ -2,7 +2,7 @@
 	import { signIn, signOut } from '@auth/sveltekit/client';
 	import { page } from '$app/stores';
 	import type { LayoutServerData } from './$types';
-	import { MyTestButton } from 'ui';
+	import { MyTestButton, TeamElement } from 'ui';
 	export let data: LayoutServerData;
 </script>
 
@@ -21,3 +21,12 @@
 <button disabled={!data.isLogged} on:click={() => signOut()}>Kijelentkezés</button>
 
 <MyTestButton />
+<div class="w-60">
+	<TeamElement
+		logo={`<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="50" cy="50" r="50" />
+  </svg>`}
+		slug="slug"
+		team="schdesign"
+	/>
+</div>
