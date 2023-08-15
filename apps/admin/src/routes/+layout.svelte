@@ -31,5 +31,5 @@
 	<main class="grow max-w-screen-xl mx-auto w-full px-4 my-16">
 		<slot />
 	</main>
-	<Footer {routes} domain={'admin.logotar.schdesign.hu'} />
+	<Footer routes={[]} domain={'admin.logotar.schdesign.hu'} />
 </div>

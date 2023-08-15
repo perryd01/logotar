@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { white as logo } from "../static/logos";
+  import { white } from "../static/logos";
+  const logo = white;
   export let version: string | undefined = "0.0.1";
   export let domain: string = "logotar.schdesign.hu";
   export let routes = [
@@ -27,6 +28,8 @@
     name: string;
     path: string;
   }[];
+
+  console.log(logo);
 </script>
 
 <!--
@@ -50,7 +53,7 @@
     </ul>
     <span>made with sveltekit & tailwindcss & turborepo</span>
     <span>{`logotar v${version}`}</span>
-    <span>
+    <span class="w-32">
       {@html logo}
     </span>
   </div>

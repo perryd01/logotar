@@ -59,8 +59,8 @@
   <div
     class="container items-center mx-auto p-2 rounded-lg flex flex-row justify-between"
   >
-    <a href="/" class="flex flex-row gap-2 items-center">
-      <div class="h-8 aspect-square">
+    <a href="/" class="flex flex-row items-center" style="gap: 8px">
+      <div class="h-8 aspect-square" style="height: 32px; aspect-ratio: 1/1;">
         {@html logo}
       </div>
       <span>{title}</span>
@@ -98,6 +98,7 @@
 <style lang="postcss">
   header {
     @apply sticky top-0 left-0 w-full z-50 flex flex-row justify-between items-center px-8 h-16;
+    justify-content: space-between;
     transition: transform 400ms cubic-bezier(1, 0.26, 0.51, 0.72);
   }
 
