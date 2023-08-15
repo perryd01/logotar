@@ -1,6 +1,5 @@
 <script lang="ts">
-	import Footer from '$lib/components/Footer.svelte';
-	import { Header } from 'ui';
+	import { Header, Footer } from 'ui';
 	import '../app.css';
 	import type { LayoutData } from './$types';
 
@@ -26,5 +25,5 @@
 	<main class="grow max-w-screen-xl mx-auto w-full px-4 my-16">
 		<slot />
 	</main>
-	<Footer version={data.version} />
+	<Footer />
 </div>

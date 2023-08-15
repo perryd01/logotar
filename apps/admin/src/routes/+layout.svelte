@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Header from 'ui/components/Header.svelte';
+	import { Header, Footer } from 'ui';
 	import '../app.css';
 
 	import { browser } from '$app/environment';
@@ -31,5 +31,5 @@
 	<main class="grow max-w-screen-xl mx-auto w-full px-4 my-16">
 		<slot />
 	</main>
-	<footer>boo</footer>
+	<Footer {routes} domain={'admin.logotar.schdesign.hu'} />
 </div>
