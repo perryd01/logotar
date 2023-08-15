@@ -1,8 +1,13 @@
 <script lang="ts">
 	import Footer from '$lib/components/Footer.svelte';
-	import Header from '$lib/components/Header.svelte';
+	import { Header } from 'ui';
 	import '../app.css';
 	import type { LayoutData } from './$types';
+
+	import { browser } from '$app/environment';
+	import { navigating } from '$app/stores';
+
+	$: n = navigating;
 
 	export let data: LayoutData;
 </script>
@@ -17,7 +22,7 @@
 </svelte:head>
 
 <div class="font-poppins flex flex-col justify-between min-h-[100svh]">
-	<Header />
+	<Header {browser} {navigating} />
 	<main class="grow max-w-screen-xl mx-auto w-full px-4 my-16">
 		<slot />
 	</main>

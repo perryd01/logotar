@@ -15,5 +15,8 @@
   "devDependencies": {
     "eslint-config-custom": "workspace:*",
     "svelte": "^4.0.5"
+  },
+  "dependencies": {
+    "lucide-svelte": "^0.265.0"
   }
 }

@@ -195,6 +195,10 @@ importers:
         version: 4.0.0(eslint@8.47.0)(svelte@3.59.2)
 
   packages/ui:
+    dependencies:
+      lucide-svelte:
+        specifier: ^0.265.0
+        version: 0.265.0(svelte@4.0.5)
     devDependencies:
       eslint-config-custom:
         specifier: workspace:*
