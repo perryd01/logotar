@@ -3,7 +3,11 @@
 	import '../app.css';
 
 	import { browser } from '$app/environment';
-	import { navigating } from '$app/stores';
+	import { navigating, page } from '$app/stores';
+	import { beforeNavigate, goto } from '$app/navigation';
+	import { redirect } from '@sveltejs/kit';
+
+	const user = $page.data.session?.user;
 
 	const routes = [
 		{
@@ -15,6 +19,13 @@
 			path: '/logok'
 		}
 	];
+
+	beforeNavigate((event) => {
+		// TODO fix?
+		if (!user && event.to?.route.id !== 'auth') {
+			throw redirect(300, '/auth');
+		}
+	});
 </script>
 
 <svelte:head>

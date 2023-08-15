@@ -11,7 +11,7 @@ import { AUTHSCH_CLIENT_ID, AUTHSCH_CLIENT_SECRET } from '$env/static/private';
 async function authorization({ event, resolve }: { event: any; resolve: any }) {
 	const session = await event.locals.getSession();
 
-	if (event.url.pathname.startsWith('/') && event.url.pathname !== '/auth') {
+	if (event.url.pathname && event.url.pathname !== '/auth') {
 		if (!session) {
 			throw redirect(303, '/auth');
 		}
