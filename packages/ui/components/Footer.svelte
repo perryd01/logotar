@@ -28,8 +28,6 @@
     name: string;
     path: string;
   }[];
-
-  console.log(logo);
 </script>
 
 <!--
