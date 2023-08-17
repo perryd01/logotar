@@ -1,0 +1,19 @@
+version: '3.1'
+
+services:
+
+  db:
+    container_name: logotar-postgres
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: logotar
+      POSTGRES_USER: logotar
+      POSTGRES_PASSWORD: logotar
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+
+volumes:
+  postgres:
