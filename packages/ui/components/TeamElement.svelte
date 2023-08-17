@@ -6,7 +6,7 @@
 
 <a href="/logok/{slug}">
   <div class="shadow-md rounded-lg p-2">
-    <div class="aspect-square p-4 rounded-lg relative group transition-colors">
+    <div class="aspect-square rounded-lg relative group transition-colors">
       <div class="svgContainer">
         {@html logo}
       </div>
