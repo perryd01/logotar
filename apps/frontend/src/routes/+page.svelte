@@ -1,6 +1,9 @@
-<script>
+<script lang="ts">
 	import CategoryPreviewSection from '$lib/components/CategoryPreviewSection.svelte';
 	import { Search } from 'lucide-svelte';
+	import type { PageServerData } from './$types';
+
+	export let data: PageServerData;
 </script>
 
 <svelte:head>
@@ -34,6 +37,14 @@
 </section>
 
 <div class="grid gap-16">
-	<CategoryPreviewSection section="Simonyi Károly Szakkollégium" />
-	<CategoryPreviewSection section="Schönherz" />
+	{#each data.groups as group}
+		<CategoryPreviewSection
+			section={group.nameLong ?? group.name}
+			logos={group.teams.map((t) => ({
+				team: t.name,
+				logo: t?.Logos[0].content ?? '',
+				slug: t.slug
+			}))}
+		/>
+	{/each}
 </div>
