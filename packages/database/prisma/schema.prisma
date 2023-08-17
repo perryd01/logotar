@@ -14,9 +14,56 @@ model User {
   id         Int      @id @default(autoincrement())
   internalId String   @unique
   email      String   @unique
-  surname    String
-  givenName  String
+  surname    String?
+  givenName  String?
   role       UserRole
+
+  memberships Membership[]
+}
+
+model Group {
+  id       Int     @id @default(autoincrement())
+  name     String
+  nameLong String?
+  slug     String  @unique
+
+  teams Team[]
+}
+
+model Membership {
+  id     Int            @id @default(autoincrement())
+  title  String[]
+  role   MembershipRole
+  team   Team           @relation(fields: [teamId], references: [id])
+  start  DateTime
+  end    DateTime?
+  User   User?          @relation(fields: [userId], references: [id])
+  userId Int
+  teamId Int
+}
+
+model Team {
+  id         Int     @id @default(autoincrement())
+  internalId Int     @unique
+  name       String
+  nameLong   String?
+  slug       String  @unique
+
+  primaryLogoId Int?
+  groupId       Int
+
+  Group      Group        @relation(fields: [groupId], references: [id])
+  Membership Membership[]
+  Logos      Logo[]
+}
+
+model Logo {
+  id      Int      @id @default(autoincrement())
+  name    String
+  content String
+  type    LogoType
+  Team    Team?    @relation(fields: [teamId], references: [id])
+  teamId  Int?
 }
 
 enum LogoType {
