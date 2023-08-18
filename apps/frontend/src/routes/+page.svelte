@@ -42,7 +42,7 @@
 			section={group.nameLong ?? group.name}
 			logos={group.teams.map((t) => ({
 				team: t.name,
-				logo: t?.Logos[0].content ?? '',
+				logo: t?.Logos[0].content ? t.Logos[0].content : '',
 				slug: t.slug
 			}))}
 		/>
