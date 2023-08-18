@@ -40,11 +40,16 @@
 	{#each data.groups as group}
 		<CategoryPreviewSection
 			section={group.nameLong ?? group.name}
-			logos={group.teams.map((t) => ({
-				team: t.name,
-				logo: t?.Logos[0].content ? t.Logos[0].content : '',
-				slug: t.slug
-			}))}
+			logos={group.teams.map((t) => {
+				const logo = t.Logos[0];
+
+				return {
+					teamName: t.name,
+					slug: t.slug,
+					href: `/logok/${t.slug}`,
+					image: `/api/assets/${group.slug}/${t.slug}/${logo.name}.svg`
+				};
+			})}
 		/>
 	{/each}
 </div>
