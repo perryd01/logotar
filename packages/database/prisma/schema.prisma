@@ -60,7 +60,7 @@ model Team {
 model Logo {
   id      Int      @id @default(autoincrement())
   name    String
-  content String
+  content Bytes
   type    LogoType
   Team    Team?    @relation(fields: [teamId], references: [id])
   teamId  Int?

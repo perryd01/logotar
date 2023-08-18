@@ -35,7 +35,18 @@ export const load: PageServerLoad = async () => {
 		}
 	});
 
+	const g = groups.map((group) => ({
+		...group,
+		teams: group.teams.map((team) => ({
+			...team,
+			Logos: team.Logos.map((logo) => ({
+				...logo,
+				content: logo.content.toString()
+			}))
+		}))
+	}));
+
 	return {
-		groups
+		groups: g
 	};
 };
