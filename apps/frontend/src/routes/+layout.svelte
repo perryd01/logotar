@@ -1,14 +1,11 @@
 <script lang="ts">
 	import { Header, Footer } from 'ui';
 	import '../app.css';
-	import type { LayoutData } from './$types';
 
 	import { browser } from '$app/environment';
 	import { navigating } from '$app/stores';
 
 	$: n = navigating;
-
-	export let data: LayoutData;
 </script>
 
 <svelte:head>
