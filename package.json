@@ -4,7 +4,10 @@
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "db:generate": "turbo db:generate",
+    "db:push": "turbo db:push",
+    "db:seed": "turbo db:seed"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.14",
