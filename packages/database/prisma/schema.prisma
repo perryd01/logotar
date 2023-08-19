@@ -44,7 +44,7 @@ model Membership {
 
 model Team {
   id         Int     @id @default(autoincrement())
-  internalId Int     @unique
+  internalId Int?    @unique
   name       String
   nameLong   String?
   slug       String  @unique
