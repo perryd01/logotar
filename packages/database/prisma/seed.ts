@@ -98,14 +98,12 @@ async function main() {
         nameLong: "Villamosmérnöki és Informatikai Kar",
         slug: "vik",
         groupId: bme.id,
-        internalId: -1,
       },
       {
         name: "BME",
         nameLong: "Budapesti Műszaki és Gazdaságtudományi Egyetem",
         slug: "bme",
         groupId: bme.id,
-        internalId: -2,
       },
       {
         name: "Simonyi",
