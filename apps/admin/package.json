@@ -36,6 +36,8 @@
 		"@auth/sveltekit": "^0.3.6",
 		"config": "workspace:*",
 		"database": "workspace:*",
+		"flowbite": "^1.8.1",
+		"flowbite-svelte": "^0.44.4",
 		"ui": "workspace:*"
 	}
 }
