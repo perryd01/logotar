@@ -10,7 +10,6 @@
 	<title>Főoldal | logótár admin</title>
 </svelte:head>
 
-<h1 class="text-4xl text-logotar-primary">Logótár Admin</h1>
 <p>{data.isLogged ? 'Bejelentkezve' : 'Kijelentkezve'}</p>
 
 <p>Logged in as {$page.data?.session?.user?.displayName}</p>

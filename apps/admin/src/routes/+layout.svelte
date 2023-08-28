@@ -11,13 +11,16 @@
 
 	const routes = [
 		{
-			name: 'főoldal',
-			path: '/'
-		},
-		{
 			name: 'logók',
 			path: '/logok'
-		}
+		},
+		{
+			name: 'körök',
+			path: '/korok'
+		},
+		{ name: 'kategóriák', path: '/kategoriak' },
+		{ name: 'userek', path: '/felhasznalok' },
+		{ name: 'profilom', path: '/profil' }
 	];
 
 	beforeNavigate((event) => {
@@ -39,7 +42,7 @@
 
 <div class="font-poppins flex flex-col justify-between min-h-[100svh]">
 	<Header {browser} {navigating} {routes} title="logótár admin" />
-	<main class="grow max-w-screen-xl mx-auto w-full px-4 my-16">
+	<main class="grow container mx-auto w-full px-4 my-16">
 		<slot />
 	</main>
 	<Footer routes={[]} domain={'admin.logotar.schdesign.hu'} />
