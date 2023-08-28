@@ -6,6 +6,8 @@ import AuthSchProvider, {
 	type AuthSchProfile
 } from '$lib/server/AuthSchProvider';
 
+import db from '$lib/server/db';
+
 import { AUTHSCH_CLIENT_ID, AUTHSCH_CLIENT_SECRET } from '$env/static/private';
 
 async function authorization({ event, resolve }: { event: any; resolve: any }) {
@@ -42,6 +44,46 @@ export const handle: Handle = sequence(
 			})
 		],
 		callbacks: {
+			async signIn({ profile }) {
+				const p = profile as AuthSchProfile;
+				if (!p || !p.internal_id || !p.mail) {
+					return false;
+				}
+
+				const u = await db.user.findFirst({
+					where: {
+						internalId: p.internal_id
+					}
+				});
+
+				if (!u) {
+					await db.user.create({
+						data: {
+							internalId: p.internal_id,
+							email: p.mail,
+							givenName: p.givenName,
+							surname: p.sn,
+							role: 'USER'
+						}
+					});
+
+					return true;
+				}
+
+				/* await db.user.upsert({
+					where: {
+						id: u.id
+					},
+					update: {
+
+					},
+					create: {}
+				}); */
+
+				console.log('run signin');
+
+				return true;
+			},
 			async jwt({ token, account, profile }) {
 				const p = profile as AuthSchProfile;
 				// Persist the OAuth access_token to the token right after signin
