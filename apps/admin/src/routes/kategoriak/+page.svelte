@@ -36,7 +36,9 @@
 					{group.id}
 				</TableBodyCell>
 				<TableBodyCell>
-					{group.name}
+					<a href={`/kategoriak/${group.slug}`} class="text-logotar-primary underline">
+						{group.name}
+					</a>
 					<p class="text-xs truncate max-w-[15em]">{group.nameLong}</p>
 					<Tooltip>{group.nameLong}</Tooltip>
 				</TableBodyCell>
