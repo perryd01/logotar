@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { PageData } from './$types';
+	import type { PageServerData } from './$types';
 	import {
 		TableBody,
 		TableBodyCell,
@@ -10,29 +10,31 @@
 		Tooltip
 	} from 'flowbite-svelte';
 
-	export let data: PageData;
+	export let data: PageServerData;
 
-	let searchTerm = '';
-
-	$: filteredItems = data.teams.filter((item) => {
-		const term = searchTerm.trim().toLowerCase();
-		return item.name.toLowerCase().includes(term);
-	});
+	let teamSearchTerm = '';
 </script>
 
-<svelte:head><title>Körök</title></svelte:head>
+<svelte:head><title>{data.nameLong}</title></svelte:head>
 
-<TableSearch hoverable={true} bind:inputValue={searchTerm}>
+<h1>{data.name}</h1>
+<small>{data.nameLong}</small>
+
+<p>id: {data.id}</p>
+<p>slug: {data.slug}</p>
+
+<p>csapatok száma: {data.teams.length}</p>
+
+<h2>Csapatok</h2>
+<TableSearch hoverable={true} bind:inputValue={teamSearchTerm}>
 	<TableHead>
 		<TableHeadCell>id</TableHeadCell>
 		<TableHeadCell>PéK id</TableHeadCell>
 		<TableHeadCell>Név</TableHeadCell>
-		<TableHeadCell>Kategória</TableHeadCell>
-		<TableHeadCell>slug</TableHeadCell>
-		<TableHeadCell>Logók száma</TableHeadCell>
+		<TableHeadCell>Slug</TableHeadCell>
 	</TableHead>
 	<TableBody tableBodyClass="divide-y">
-		{#each filteredItems as team}
+		{#each data.teams as team}
 			<TableBodyRow>
 				<TableBodyCell>
 					{team.id}
@@ -58,13 +60,7 @@
 					{/if}
 				</TableBodyCell>
 				<TableBodyCell>
-					{team.Group.name}
-				</TableBodyCell>
-				<TableBodyCell>
 					{team.slug}
-				</TableBodyCell>
-				<TableBodyCell>
-					{team.Logos.length}
 				</TableBodyCell>
 			</TableBodyRow>
 		{/each}
