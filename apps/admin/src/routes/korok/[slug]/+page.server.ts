@@ -21,7 +21,12 @@ export const load: PageServerLoad = async ({ params }) => {
 					}
 				}
 			},
-			Logos: true,
+			Logos: {
+				select: {
+					id: true,
+					name: true
+				}
+			},
 			Group: {
 				select: {
 					id: true,

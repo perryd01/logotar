@@ -32,12 +32,20 @@
 	<h2>Logók</h2>
 	<TableSearch hoverable={true} bind:inputValue={logoSearchTerm}>
 		<TableHead>
+			<TableHeadCell>logo</TableHeadCell>
 			<TableHeadCell>id</TableHeadCell>
 			<TableHeadCell>Név</TableHeadCell>
 		</TableHead>
 		<TableBody tableBodyClass="divide-y">
 			{#each data.Logos as logo}
 				<TableBodyRow>
+					<TableBodyCell>
+						<img
+							class="w-16 h-16"
+							alt={`${logo.name} logo`}
+							src={`http://localhost:5174/api/assets/${data.Group.slug}/${data.slug}/${logo.name}.svg`}
+						/>
+					</TableBodyCell>
 					<TableBodyCell>
 						{logo.id}
 					</TableBodyCell>
