@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { signIn, signOut } from '@auth/sveltekit/client';
+	import AuthButton from '$lib/components/AuthButton.svelte';
 	const user = $page.data?.session?.user;
 	const isLogged = !!user;
 </script>
@@ -16,22 +16,8 @@
 			<span>a bejelentkezés a kollégiumi schauth által történik</span>
 		</div>
 		<div class="flex flex-col gap-2">
-			<button class:disabled={isLogged} disabled={isLogged} on:click={() => signIn('authsch')}
-				>Bejelentkezés</button
-			>
-			<button class:disabled={!isLogged} disabled={!isLogged} on:click={() => signOut()}
-				>Kijelentkezés</button
-			>
+			<AuthButton type="login" disabled={isLogged} />
+			<AuthButton type="logout" disabled={!isLogged} />
 		</div>
 	</div>
 </section>
-
-<style lang="postcss">
-	button {
-		@apply px-4 py-2 rounded-md bg-black text-white;
-	}
-
-	.disabled {
-		@apply opacity-50 cursor-not-allowed;
-	}
-</style>

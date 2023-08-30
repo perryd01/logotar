@@ -1,10 +1,9 @@
 <script lang="ts">
-	import { signIn, signOut } from '@auth/sveltekit/client';
-	import type { PageServerData } from './$types';
+	import type { LayoutServerData } from '../$types';
+	import AuthButton from '$lib/components/AuthButton.svelte';
 
-	export let data: PageServerData;
+	export let data: LayoutServerData;
 </script>
 
-<button on:click={() => signIn('authsch')}>Bejelentkezés</button>
-
-<button on:click={() => signOut()}>Kijelentkezés</button>
+<AuthButton type="login" disabled={!!data.session} />
+<AuthButton type="logout" disabled={!data.session} />
