@@ -58,36 +58,38 @@
 	</TableSearch>
 </section>
 
-<section>
-	<h2>Tagok</h2>
-	<TableSearch hoverable={true} bind:inputValue={userSearchTerm}>
-		<TableHead>
-			<TableHeadCell>id</TableHeadCell>
-			<TableHeadCell>Név</TableHeadCell>
-			<TableHeadCell>Role</TableHeadCell>
-			<TableHeadCell>Title</TableHeadCell>
-		</TableHead>
-		<TableBody tableBodyClass="divide-y">
-			{#each data.Membership as ms}
-				<TableBodyRow>
-					<TableBodyCell>
-						{ms.User?.id}
-					</TableBodyCell>
-					<TableBodyCell>
-						{ms.User?.surname}
-						{ms.User?.givenName}
-					</TableBodyCell>
-					<TableBodyCell>
-						{ms.role}
-					</TableBodyCell>
-					<TableBodyCell>
-						{ms.title.join(', ')}
-					</TableBodyCell>
-				</TableBodyRow>
-			{/each}
-		</TableBody>
-	</TableSearch>
-</section>
+{#if data.internalId}
+	<section>
+		<h2>Tagok</h2>
+		<TableSearch hoverable={true} bind:inputValue={userSearchTerm}>
+			<TableHead>
+				<TableHeadCell>id</TableHeadCell>
+				<TableHeadCell>Név</TableHeadCell>
+				<TableHeadCell>Role</TableHeadCell>
+				<TableHeadCell>Title</TableHeadCell>
+			</TableHead>
+			<TableBody tableBodyClass="divide-y">
+				{#each data.Membership as ms}
+					<TableBodyRow>
+						<TableBodyCell>
+							{ms.User?.id}
+						</TableBodyCell>
+						<TableBodyCell>
+							{ms.User?.surname}
+							{ms.User?.givenName}
+						</TableBodyCell>
+						<TableBodyCell>
+							{ms.role}
+						</TableBodyCell>
+						<TableBodyCell>
+							{ms.title.join(', ')}
+						</TableBodyCell>
+					</TableBodyRow>
+				{/each}
+			</TableBody>
+		</TableSearch>
+	</section>
+{/if}
 
 <style lang="postcss">
 	section {
