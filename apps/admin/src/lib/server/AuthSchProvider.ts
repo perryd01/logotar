@@ -20,6 +20,7 @@ export type AuthSchEduPersonEntitlement = {
 	name: string;
 	title: string[];
 	status: 'körvezető' | 'tag' | 'öregtag';
+	start: string;
 	end: string | null;
 };
 
