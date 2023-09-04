@@ -35,7 +35,7 @@
 	"dependencies": {
 		"config": "workspace:*",
 		"database": "workspace:*",
-		"lucide-svelte": "^0.274.0",
+		"lucide-svelte": "0.275.0-beta.0",
 		"ui": "workspace:*"
 	}
 }
