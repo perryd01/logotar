@@ -9,6 +9,7 @@ import AuthSchProvider, {
 import db from '$lib/server/db';
 
 import { AUTHSCH_CLIENT_ID, AUTHSCH_CLIENT_SECRET } from '$env/static/private';
+import { adminUserEmails } from '$lib/utils/constants';
 
 async function authorization({ event, resolve }: { event: any; resolve: any }) {
 	const session = await event.locals.getSession();
@@ -63,7 +64,7 @@ export const handle: Handle = sequence(
 							email: p.mail,
 							givenName: p.givenName,
 							surname: p.sn,
-							role: 'USER'
+							role: adminUserEmails.includes(p.mail) ? 'ADMIN' : 'USER'
 						}
 					});
 
