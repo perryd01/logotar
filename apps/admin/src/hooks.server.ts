@@ -9,7 +9,7 @@ import AuthSchProvider, {
 import db from '$lib/server/db';
 
 import { AUTHSCH_CLIENT_ID, AUTHSCH_CLIENT_SECRET } from '$env/static/private';
-import { adminUserEmails } from '$lib/utils/constants';
+import { adminUserEmails } from '$lib/server/constants';
 
 async function authorization({ event, resolve }: { event: any; resolve: any }) {
 	const session = await event.locals.getSession();
@@ -58,6 +58,7 @@ export const handle: Handle = sequence(
 				});
 
 				if (!u) {
+					console.log('admin emails', adminUserEmails);
 					await db.user.create({
 						data: {
 							internalId: p.internal_id,
