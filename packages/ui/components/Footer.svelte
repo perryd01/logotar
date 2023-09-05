@@ -1,7 +1,7 @@
 <script lang="ts">
   import { white } from "../static/logos";
   const logo = white;
-  export let version: string | undefined = "0.0.1";
+  export let version: string | undefined = "0.0.0";
   export let domain: string = "logotar.schdesign.hu";
   export let routes = [
     {
