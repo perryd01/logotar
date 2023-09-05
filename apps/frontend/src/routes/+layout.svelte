@@ -6,6 +6,8 @@
 	import { navigating } from '$app/stores';
 
 	$: n = navigating;
+
+	import { version } from '$app/environment';
 </script>
 
 <svelte:head>
@@ -22,5 +24,5 @@
 	<main class="grow max-w-screen-xl mx-auto w-full px-4 my-16">
 		<slot />
 	</main>
-	<Footer />
+	<Footer {version} />
 </div>

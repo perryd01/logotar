@@ -7,6 +7,8 @@
 	import { beforeNavigate, goto } from '$app/navigation';
 	import { redirect } from '@sveltejs/kit';
 
+	import { version } from '$app/environment';
+
 	const user = $page.data.session?.user;
 
 	const routes = [
@@ -45,5 +47,5 @@
 	<main class="grow container mx-auto w-full px-4 my-16">
 		<slot />
 	</main>
-	<Footer routes={[]} domain={'admin.logotar.schdesign.hu'} />
+	<Footer routes={[]} domain={'admin.logotar.schdesign.hu'} {version} />
 </div>
