@@ -15,18 +15,6 @@ async function main() {
     },
   });
 
-  const schdesign = await prisma.team.upsert({
-    where: { slug: "schdesign" },
-    update: {},
-    create: {
-      id: 1,
-      internalId: 402,
-      name: "schdesign",
-      slug: "schdesign",
-      groupId: simonyi.id,
-    },
-  });
-
   const schonherz = await prisma.group.upsert({
     where: { slug: "schonherz" },
     update: {},
@@ -34,19 +22,6 @@ async function main() {
       name: "Schönherz",
       nameLong: "Schönherz Kollégium",
       slug: "schonherz",
-    },
-  });
-
-  const sssl = await prisma.team.upsert({
-    where: { slug: "sssl" },
-    update: {},
-    create: {
-      id: 2,
-      internalId: 18,
-      name: "SSSL",
-      nameLong: "Szent Schönherz Senior Lovagrend",
-      slug: "sssl",
-      groupId: schonherz.id,
     },
   });
 
@@ -103,55 +78,65 @@ async function main() {
     ],
   });
 
+  const rawTeams = [
+    {
+      name: "schdesign",
+      slug: "schdesign",
+      internalId: 402,
+      groupId: simonyi.id,
+    },
+    {
+      internalId: 18,
+      name: "SSSL",
+      nameLong: "Szent Schönherz Senior Lovagrend",
+      slug: "sssl",
+      groupId: schonherz.id,
+    },
+    {
+      name: "VIK",
+      nameLong: "Villamosmérnöki és Informatikai Kar",
+      slug: "vik",
+      groupId: bme.id,
+    },
+    {
+      name: "BME",
+      nameLong: "Budapesti Műszaki és Gazdaságtudományi Egyetem",
+      slug: "bme",
+      groupId: bme.id,
+    },
+    {
+      name: "Simonyi",
+      nameLong: "Simonyi Károly Szakkollégium",
+      slug: "simonyi",
+      internalId: 16,
+      groupId: simonyi.id,
+    },
+    {
+      name: "Kir-Dev",
+      nameLong: "KIR fejlesztők és üzemeltetők",
+      slug: "kir-dev",
+      internalId: 106,
+      groupId: simonyi.id,
+    },
+    {
+      name: "SPOT",
+      slug: "spot",
+      internalId: 13,
+      groupId: simonyi.id,
+    },
+  ];
+
   await prisma.team.deleteMany({
     where: {
       slug: {
-        in: ["vik", "bme", "simonyi", "kir-dev", "spot"],
+        in: rawTeams.map((team) => team.slug),
       },
     },
   });
 
-  await prisma.team.createMany({
-    data: [
-      {
-        name: "VIK",
-        nameLong: "Villamosmérnöki és Informatikai Kar",
-        slug: "vik",
-        groupId: bme.id,
-        id: 3,
-      },
-      {
-        name: "BME",
-        nameLong: "Budapesti Műszaki és Gazdaságtudományi Egyetem",
-        slug: "bme",
-        groupId: bme.id,
-        id: 4,
-      },
-      {
-        name: "Simonyi",
-        nameLong: "Simonyi Károly Szakkollégium",
-        slug: "simonyi",
-        internalId: 16,
-        groupId: simonyi.id,
-        id: 5,
-      },
-      {
-        name: "Kir-Dev",
-        nameLong: "KIR fejlesztők és üzemeltetők",
-        slug: "kir-dev",
-        internalId: 106,
-        groupId: simonyi.id,
-        id: 6,
-      },
-      {
-        name: "SPOT",
-        slug: "spot",
-        internalId: 13,
-        groupId: simonyi.id,
-        id: 7,
-      },
-    ],
-  });
+  const dbTeams = await prisma.$transaction(
+    rawTeams.map((team) => prisma.team.create({ data: team }))
+  );
 
   const assetRead = (filename: string) =>
     fs.readFileSync(path.resolve(__dirname, "./assets", filename));
@@ -190,14 +175,28 @@ async function main() {
     name: string;
   }[];
 
-  const mapAssets = async () => {
-    const a = await Promise.all(assets.map((asset) => assetRead(asset.file)));
-
-    return a.map((asset, index) => ({
-      ...assets[index],
-      content: asset,
-    }));
-  };
+  const preparedLogos = (
+    await Promise.all(assets.map((asset) => assetRead(asset.file)))
+  )
+    .map((asset, index) => {
+      return {
+        ...assets[index],
+        content: asset,
+      };
+    })
+    .map((asset) => {
+      const team = dbTeams.find((t) =>
+        asset.name.toLowerCase().includes(t.slug.toLowerCase())
+      );
+      if (!team) return null;
+      return {
+        name: asset.name,
+        content: asset.content,
+        type: "LIGHT",
+        teamId: team.id,
+      };
+    })
+    .filter((e) => e !== null) as Prisma.LogoCreateInput[];
 
   await prisma.logo.deleteMany({
     where: {
@@ -207,18 +206,10 @@ async function main() {
     },
   });
 
-  const mappedAssets = await mapAssets();
+  console.log(preparedLogos, dbTeams);
 
   await prisma.logo.createMany({
-    data: mappedAssets.map((asset, index) => {
-      return {
-        name: asset.name,
-        content: asset.content,
-        type: "LIGHT",
-        id: index,
-        teamId: index + 1,
-      } as Prisma.LogoCreateInput;
-    }),
+    data: preparedLogos,
   });
 }
 
