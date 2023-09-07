@@ -1,5 +1,12 @@
 # admin
 
+## 0.0.5
+
+### Patch Changes
+
+- Updated dependencies [488bb0d]
+  - database@0.0.1
+
 ## 0.0.4
 
 ### Patch Changes
