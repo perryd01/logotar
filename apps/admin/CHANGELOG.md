@@ -1,5 +1,12 @@
 # admin
 
+## 0.0.6
+
+### Patch Changes
+
+- Updated dependencies [3ff6ce6]
+  - ui@0.0.2
+
 ## 0.0.5
 
 ### Patch Changes
