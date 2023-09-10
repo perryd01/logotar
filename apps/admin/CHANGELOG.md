@@ -1,5 +1,11 @@
 # admin
 
+## 0.1.0
+
+### Minor Changes
+
+- c48b106: Added feature that allows creating new groups
+
 ## 0.0.7
 
 ### Patch Changes
