@@ -1,5 +1,13 @@
 # frontend
 
+## 0.0.5
+
+### Patch Changes
+
+- b99d6a0: Update lucide-svelte iconpack package that was bugged before. Now its a stable release.
+- Updated dependencies [b99d6a0]
+  - ui@0.0.3
+
 ## 0.0.4
 
 ### Patch Changes

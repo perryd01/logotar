@@ -1,5 +1,11 @@
 # ui
 
+## 0.0.3
+
+### Patch Changes
+
+- b99d6a0: Update lucide-svelte iconpack package that was bugged before. Now its a stable release.
+
 ## 0.0.2
 
 ### Patch Changes
