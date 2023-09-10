@@ -59,6 +59,9 @@ importers:
       flowbite-svelte:
         specifier: ^0.44.4
         version: 0.44.4(svelte@4.2.0)
+      slugify:
+        specifier: ^1.6.6
+        version: 1.6.6
       ui:
         specifier: workspace:*
         version: link:../../packages/ui
@@ -69,6 +72,9 @@ importers:
       '@sveltejs/kit':
         specifier: ^1.24.0
         version: 1.24.0(svelte@4.2.0)(vite@4.4.9)
+      '@tailwindcss/forms':
+        specifier: ^0.5.6
+        version: 0.5.6(tailwindcss@3.3.3)
       '@typescript-eslint/eslint-plugin':
         specifier: ^6.5.0
         version: 6.5.0(@typescript-eslint/parser@6.5.0)(eslint@8.48.0)(typescript@5.2.2)
@@ -102,6 +108,9 @@ importers:
       svelte-check:
         specifier: ^3.5.1
         version: 3.5.1(postcss@8.4.29)(svelte@4.2.0)
+      sveltekit-superforms:
+        specifier: ^1.6.1
+        version: 1.6.1(@sveltejs/kit@1.24.0)(svelte@4.2.0)(zod@3.22.2)
       tailwindcss:
         specifier: ^3.3.3
         version: 3.3.3
@@ -114,6 +123,9 @@ importers:
       vite:
         specifier: ^4.4.9
         version: 4.4.9
+      zod:
+        specifier: ^3.22.2
+        version: 3.22.2
 
   apps/frontend:
     dependencies:
@@ -3665,6 +3677,11 @@ packages:
     resolution: {integrity: sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==}
     engines: {node: '>=8'}
 
+  /slugify@1.6.6:
+    resolution: {integrity: sha512-h+z7HKHYXj6wJU+AnS/+IH8Uh9fdcX1Lrhg1/VMdf9PwoBQXFcXiAdsy2tSK0P6gKwJLXp02r90ahUCqHk9rrw==}
+    engines: {node: '>=8.0.0'}
+    dev: false
+
   /smartwrap@2.0.2:
     resolution: {integrity: sha512-vCsKNQxb7PnCNd2wY1WClWifAc2lwqsG8OaswpJkVJsvMGcnEntdTCDajZCkk93Ay1U3t/9puJmb525Rg5MZBA==}
     engines: {node: '>=6'}
@@ -3957,6 +3974,18 @@ packages:
       locate-character: 3.0.0
       magic-string: 0.30.3
       periscopic: 3.1.0
+
+  /sveltekit-superforms@1.6.1(@sveltejs/kit@1.24.0)(svelte@4.2.0)(zod@3.22.2):
+    resolution: {integrity: sha512-85whZdnytMFStDY1PI3ycr5BoTb57XjkEJqZ2Mt8HT06y/CKlQBws5Cx/AxPxA3WHhGfC26yfXqLYqEQz1oGfw==}
+    peerDependencies:
+      '@sveltejs/kit': 1.x
+      svelte: 3.x || 4.x
+      zod: 3.x
+    dependencies:
+      '@sveltejs/kit': 1.24.0(svelte@4.2.0)(vite@4.4.9)
+      svelte: 4.2.0
+      zod: 3.22.2
+    dev: true
 
   /svg.draggable.js@2.2.2:
     resolution: {integrity: sha512-JzNHBc2fLQMzYCZ90KZHN2ohXL0BQJGQimK1kGk6AvSeibuKcIdDX9Kr0dT9+UJ5O8nYA0RB839Lhvk4CY4MZw==}
@@ -4606,3 +4635,7 @@ packages:
   /yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
+
+  /zod@3.22.2:
+    resolution: {integrity: sha512-wvWkphh5WQsJbVk1tbx1l1Ly4yg+XecD+Mq280uBGt9wa5BKSWf4Mhp6GmrkPixhMxmabYY7RbzlwVP32pbGCg==}
+    dev: true
