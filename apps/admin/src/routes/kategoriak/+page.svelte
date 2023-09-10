@@ -22,6 +22,7 @@
 
 <svelte:head><title>Kategóriák</title></svelte:head>
 
+<a class="link-button" href="/kategoriak/uj">Új kategória hozzáadása</a>
 <TableSearch hoverable={true} bind:inputValue={searchTerm}>
 	<TableHead>
 		<TableHeadCell>ID</TableHeadCell>
