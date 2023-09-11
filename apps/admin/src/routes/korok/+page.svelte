@@ -22,6 +22,7 @@
 
 <svelte:head><title>Körök</title></svelte:head>
 
+<a class="link-button" href="/korok/uj">Új csapat hozzáadása</a>
 <TableSearch hoverable={true} bind:inputValue={searchTerm}>
 	<TableHead>
 		<TableHeadCell>id</TableHeadCell>

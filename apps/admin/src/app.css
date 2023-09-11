@@ -18,6 +18,8 @@ label {
 	@apply block mb-2;
 }
 
-input[type='text'] {
+input[type='text'],
+input[type='number'],
+select {
 	@apply rounded-lg border-gray-300 dark:border-gray-600 block w-full disabled:cursor-not-allowed disabled:opacity-50;
 }
