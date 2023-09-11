@@ -1,5 +1,11 @@
 # admin
 
+## 0.2.0
+
+### Minor Changes
+
+- a5b4b0b: Add functionality to create new teams.
+
 ## 0.1.0
 
 ### Minor Changes
