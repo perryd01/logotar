@@ -1,5 +1,11 @@
 # admin
 
+## 0.3.0
+
+### Minor Changes
+
+- af9a0c0: Add functionality to create logos.
+
 ## 0.2.0
 
 ### Minor Changes
