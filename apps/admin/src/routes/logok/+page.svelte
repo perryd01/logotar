@@ -25,6 +25,7 @@
 
 <svelte:head><title>Logók</title></svelte:head>
 
+<a class="link-button" href="/logok/uj">Új logó hozzáadása</a>
 <TableSearch hoverable={true} bind:inputValue={searchTerm}>
 	<TableHead>
 		<TableHeadCell>Logo</TableHeadCell>
