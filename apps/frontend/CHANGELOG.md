@@ -1,5 +1,11 @@
 # frontend
 
+## 0.0.6
+
+### Patch Changes
+
+- 6021db2: Add error handling page.
+
 ## 0.0.5
 
 ### Patch Changes
