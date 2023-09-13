@@ -65,7 +65,12 @@ export const actions: Actions = {
 		if (!logo) return fail(500, { form });
 
 		const status = {
-			data: logo,
+			data: {
+				id: logo.id,
+				name: logo.name,
+				type: logo.type,
+				teamId: logo.teamId
+			},
 			success: true,
 			error: undefined
 		};
