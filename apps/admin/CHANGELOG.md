@@ -1,5 +1,11 @@
 # admin
 
+## 0.3.1
+
+### Patch Changes
+
+- 6021db2: Add error handling page.
+
 ## 0.3.0
 
 ### Minor Changes
