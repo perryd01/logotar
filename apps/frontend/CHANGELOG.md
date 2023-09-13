@@ -1,5 +1,11 @@
 # frontend
 
+## 0.0.7
+
+### Patch Changes
+
+- Use primarylogo where possible. Also some performance improvments where Logo byte content was sent to client even if it was not used.
+
 ## 0.0.6
 
 ### Patch Changes
