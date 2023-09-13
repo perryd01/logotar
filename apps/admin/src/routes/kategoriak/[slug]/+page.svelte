@@ -15,7 +15,7 @@
 	let teamSearchTerm = '';
 </script>
 
-<svelte:head><title>{data.nameLong}</title></svelte:head>
+<svelte:head><title>{data.nameLong ?? data.name}</title></svelte:head>
 
 <h1>{data.name}</h1>
 <small>{data.nameLong}</small>

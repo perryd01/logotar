@@ -13,11 +13,11 @@ export const load = async () => {
 						id: true,
 						name: true,
 						slug: true,
+						primaryLogoId: true,
 						Logos: {
 							select: {
 								id: true,
-								name: true,
-								content: false
+								name: true
 							},
 							where: {
 								content: {
@@ -25,6 +25,9 @@ export const load = async () => {
 								}
 							}
 						}
+					},
+					orderBy: {
+						name: 'asc'
 					}
 				}
 			},
@@ -32,12 +35,7 @@ export const load = async () => {
 				name: 'asc'
 			}
 		})
-	)
-		.map((group) => ({
-			...group,
-			teams: group.teams.sort((a, b) => a.name.localeCompare(b.name))
-		}))
-		.filter((group) => group.teams.length > 0);
+	).filter((group) => group.teams.length > 0);
 
 	return {
 		groups
