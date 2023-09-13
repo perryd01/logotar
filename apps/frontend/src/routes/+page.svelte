@@ -41,7 +41,8 @@
 		<CategoryPreviewSection
 			section={group.nameLong ?? group.name}
 			logos={group.teams.map((t) => {
-				const logo = t.Logos[0];
+				const primaryLogo = t.Logos.find((l) => t.primaryLogoId === l.id);
+				const logo = primaryLogo ?? t.Logos[0];
 
 				return {
 					teamName: t.name,

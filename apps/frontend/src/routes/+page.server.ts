@@ -13,11 +13,12 @@ export const load: PageServerLoad = async () => {
 					id: true,
 					name: true,
 					slug: true,
+					primaryLogoId: true,
 					Logos: {
 						select: {
 							id: true,
 							name: true,
-							content: true
+							content: false
 						},
 						where: {
 							content: {
@@ -37,15 +38,7 @@ export const load: PageServerLoad = async () => {
 
 	const g = groups.map((group) => ({
 		...group,
-		teams: group.teams
-			.map((team) => ({
-				...team,
-				Logos: team.Logos.map((logo) => ({
-					...logo,
-					content: logo.content.toString()
-				}))
-			}))
-			.filter((team) => team.Logos.length > 0)
+		teams: group.teams.filter((team) => team.Logos.length > 0)
 	}));
 
 	return {

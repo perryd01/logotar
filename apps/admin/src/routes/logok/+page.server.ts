@@ -5,7 +5,10 @@ export const prerender = false;
 
 export const load: PageServerLoad = async () => {
 	const logos = await db.logo.findMany({
-		include: {
+		select: {
+			id: true,
+			name: true,
+			type: true,
 			Team: {
 				select: {
 					name: true,
@@ -24,9 +27,6 @@ export const load: PageServerLoad = async () => {
 	});
 
 	return {
-		logos: logos.map((logo) => ({
-			...logo,
-			content: logo.content.toString()
-		}))
+		logos
 	};
 };

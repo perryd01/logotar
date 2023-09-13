@@ -10,7 +10,12 @@ export const load: PageServerLoad = async (context) => {
 		include: {
 			teams: {
 				include: {
-					Logos: true
+					Logos: {
+						select: {
+							id: true,
+							name: true
+						}
+					}
 				}
 			}
 		},
@@ -24,15 +29,6 @@ export const load: PageServerLoad = async (context) => {
 	}
 
 	return {
-		group: {
-			...group,
-			teams: group.teams.map((team) => ({
-				...team,
-				Logos: team.Logos.map((logo) => ({
-					...logo,
-					content: logo.content.toString()
-				}))
-			}))
-		}
+		group
 	};
 };
