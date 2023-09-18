@@ -32,7 +32,8 @@ export const load: PageServerLoad = async () => {
 		where: {
 			slug: {
 				in: ['simonyi', 'schonherz']
-			}
+			},
+			isDisabled: false
 		}
 	});
 

@@ -27,7 +27,8 @@ export const load = async ({ params }) => {
 			}
 		},
 		where: {
-			slug
+			slug,
+			isDisabled: false
 		}
 	});
 

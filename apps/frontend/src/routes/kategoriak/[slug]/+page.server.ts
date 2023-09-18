@@ -5,7 +5,8 @@ import { error } from '@sveltejs/kit';
 export const load: PageServerLoad = async (context) => {
 	const group = await db.group.findFirst({
 		where: {
-			slug: context.params.slug
+			slug: context.params.slug,
+			isDisabled: false
 		},
 		include: {
 			teams: {
@@ -14,8 +15,23 @@ export const load: PageServerLoad = async (context) => {
 						select: {
 							id: true,
 							name: true
+						},
+						where: {
+							content: {
+								not: undefined
+							}
 						}
 					}
+				},
+				where: {
+					Logos: {
+						some: {
+							content: {
+								not: undefined
+							}
+						}
+					},
+					isDisabled: false
 				}
 			}
 		},
@@ -23,6 +39,8 @@ export const load: PageServerLoad = async (context) => {
 			name: 'asc'
 		}
 	});
+
+	console.log(group);
 
 	if (!group) {
 		throw error(404, 'Group not found');

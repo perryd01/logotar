@@ -11,6 +11,9 @@ export const load: PageServerLoad = async () => {
 		},
 		orderBy: {
 			name: 'asc'
+		},
+		where: {
+			isDisabled: false
 		}
 	});
 
