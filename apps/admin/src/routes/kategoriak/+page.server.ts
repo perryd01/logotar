@@ -10,11 +10,15 @@ export const load: PageServerLoad = async () => {
 			name: true,
 			nameLong: true,
 			slug: true,
+			isDisabled: true,
 			teams: {
 				select: {
 					_count: true
 				}
 			}
+		},
+		orderBy: {
+			id: 'asc'
 		}
 	});
 

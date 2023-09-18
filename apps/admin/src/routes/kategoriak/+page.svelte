@@ -29,6 +29,7 @@
 		<TableHeadCell>Név</TableHeadCell>
 		<TableHeadCell>slug</TableHeadCell>
 		<TableHeadCell>Csapatok száma</TableHeadCell>
+		<TableHeadCell>Letiltva</TableHeadCell>
 	</TableHead>
 	<TableBody tableBodyClass="divide-y">
 		{#each filteredItems as group}
@@ -48,6 +49,9 @@
 				</TableBodyCell>
 				<TableBodyCell>
 					{group.teams.length}
+				</TableBodyCell>
+				<TableBodyCell>
+					{group.isDisabled ? 'igen' : 'nem'}
 				</TableBodyCell>
 			</TableBodyRow>
 		{/each}
