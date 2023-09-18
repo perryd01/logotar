@@ -1,6 +1,8 @@
 <script lang="ts">
+	import { Skull } from 'lucide-svelte';
 	import type { PageServerData } from './$types';
 	import {
+		Button,
 		TableBody,
 		TableBodyCell,
 		TableBodyRow,
@@ -9,6 +11,7 @@
 		TableSearch,
 		Tooltip
 	} from 'flowbite-svelte';
+	import { enhance } from '$app/forms';
 
 	export let data: PageServerData;
 
@@ -22,8 +25,29 @@
 
 <p>id: {data.id}</p>
 <p>slug: {data.slug}</p>
+<p>letilva: {data.isDisabled ? 'igaz' : 'hamis'}</p>
 
 <p>csapatok száma: {data.teams.length}</p>
+
+<div class="flex flex-row gap-2">
+	<Button color="light" on:click={() => (defaultModal = true)}>Szerkesztés</Button>
+	<form method="POST" action="?/delete" use:enhance>
+		<Button color="red" type="submit">
+			{#if data.isDisabled}
+				Végleges törlés
+				<Skull size={16} />
+			{:else}
+				Letiltás
+			{/if}
+		</Button>
+	</form>
+
+	{#if data.isDisabled}
+		<form method="POST" action="?/reactivate" use:enhance>
+			<Button color="green" type="submit">Visszaállítás</Button>
+		</form>
+	{/if}
+</div>
 
 <h2>Csapatok</h2>
 <TableSearch hoverable={true} bind:inputValue={teamSearchTerm}>

@@ -5,9 +5,12 @@
 		TableHeadCell,
 		TableBody,
 		TableBodyRow,
-		TableBodyCell
+		TableBodyCell,
+		Button
 	} from 'flowbite-svelte';
 	import type { PageServerData } from './$types';
+	import { Skull } from 'lucide-svelte';
+	import { enhance } from '$app/forms';
 
 	export let data: PageServerData;
 
@@ -25,8 +28,29 @@
 
 <p>id: {data.id}</p>
 <p>PéK id: {data.internalId}</p>
+<p>Letiltva: {data.isDisabled}</p>
 
 <p>slug: {data.slug}</p>
+
+<div class="flex flex-row gap-2">
+	<Button color="light">Szerkesztés</Button>
+	<form method="POST" action="?/delete" use:enhance>
+		<Button color="red" type="submit">
+			{#if data.isDisabled}
+				Végleges törlés
+				<Skull size={16} />
+			{:else}
+				Letiltás
+			{/if}
+		</Button>
+	</form>
+
+	{#if data.isDisabled}
+		<form method="POST" action="?/reactivate" use:enhance>
+			<Button color="green" type="submit">Visszaállítás</Button>
+		</form>
+	{/if}
+</div>
 
 <section>
 	<h2>Logók</h2>
