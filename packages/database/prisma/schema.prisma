@@ -19,6 +19,8 @@ model User {
   role       UserRole
 
   memberships Membership[]
+
+  isDisabled Boolean @default(false)
 }
 
 model Group {
@@ -28,6 +30,8 @@ model Group {
   slug     String  @unique
 
   teams Team[]
+
+  isDisabled Boolean @default(false)
 }
 
 model Membership {
@@ -55,6 +59,8 @@ model Team {
   Group      Group        @relation(fields: [groupId], references: [id])
   Membership Membership[]
   Logos      Logo[]
+
+  isDisabled Boolean @default(false)
 }
 
 model Logo {
