@@ -31,6 +31,7 @@
 		<TableHeadCell>Kategória</TableHeadCell>
 		<TableHeadCell>slug</TableHeadCell>
 		<TableHeadCell>Logók száma</TableHeadCell>
+		<TableHeadCell>Letiltva</TableHeadCell>
 	</TableHead>
 	<TableBody tableBodyClass="divide-y">
 		{#each filteredItems as team}
@@ -66,6 +67,9 @@
 				</TableBodyCell>
 				<TableBodyCell>
 					{team.Logos.length}
+				</TableBodyCell>
+				<TableBodyCell>
+					{team.isDisabled ? 'igen' : 'nem'}
 				</TableBodyCell>
 			</TableBodyRow>
 		{/each}

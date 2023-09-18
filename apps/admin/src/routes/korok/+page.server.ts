@@ -20,7 +20,8 @@ export const load: PageServerLoad = async () => {
 				select: {
 					id: true
 				}
-			}
+			},
+			isDisabled: true
 		}
 	});
 
