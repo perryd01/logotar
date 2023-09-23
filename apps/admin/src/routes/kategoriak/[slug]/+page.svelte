@@ -18,22 +18,22 @@
 	let teamSearchTerm = '';
 </script>
 
-<svelte:head><title>{data.nameLong ?? data.name}</title></svelte:head>
+<svelte:head><title>{data.group.nameLong ?? data.group.name}</title></svelte:head>
 
-<h1>{data.name}</h1>
-<small>{data.nameLong}</small>
+<h1>{data.group.name}</h1>
+<small>{data.group.nameLong}</small>
 
-<p>id: {data.id}</p>
-<p>slug: {data.slug}</p>
-<p>letilva: {data.isDisabled ? 'igaz' : 'hamis'}</p>
+<p>id: {data.group.id}</p>
+<p>slug: {data.group.slug}</p>
+<p>letilva: {data.group.isDisabled ? 'igaz' : 'hamis'}</p>
 
-<p>csapatok száma: {data.teams.length}</p>
+<p>csapatok száma: {data.group.teams.length}</p>
 
 <div class="flex flex-row gap-2">
-	<Button color="light" on:click={() => (defaultModal = true)}>Szerkesztés</Button>
+	<Button href={`/kategoriak/${data.group.slug}/szerkesztes`} color="light">Szerkesztés</Button>
 	<form method="POST" action="?/delete" use:enhance>
 		<Button color="red" type="submit">
-			{#if data.isDisabled}
+			{#if data.group.isDisabled}
 				Végleges törlés
 				<Skull size={16} />
 			{:else}
@@ -42,7 +42,7 @@
 		</Button>
 	</form>
 
-	{#if data.isDisabled}
+	{#if data.group.isDisabled}
 		<form method="POST" action="?/reactivate" use:enhance>
 			<Button color="green" type="submit">Visszaállítás</Button>
 		</form>
@@ -58,7 +58,7 @@
 		<TableHeadCell>Slug</TableHeadCell>
 	</TableHead>
 	<TableBody tableBodyClass="divide-y">
-		{#each data.teams as team}
+		{#each data.group.teams as team}
 			<TableBodyRow>
 				<TableBodyCell>
 					{team.id}

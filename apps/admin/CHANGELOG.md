@@ -1,5 +1,11 @@
 # admin
 
+## 0.4.0
+
+### Minor Changes
+
+- Implement edit entity feature for groups and teams
+
 ## 0.3.2
 
 ### Patch Changes

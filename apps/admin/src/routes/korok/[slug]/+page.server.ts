@@ -81,7 +81,10 @@ export const actions: Actions = {
 			return error(500, 'Failed to update team');
 		}
 
+		throw redirect(303, `/korok/${updatedTeam.slug}`);
+
 		return {
+			form,
 			data: updatedTeam,
 			success: true
 		};
