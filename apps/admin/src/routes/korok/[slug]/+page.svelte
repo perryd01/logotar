@@ -33,7 +33,7 @@
 <p>slug: {data.slug}</p>
 
 <div class="flex flex-row gap-2">
-	<Button color="light">Szerkesztés</Button>
+	<Button href={`/korok/${data.slug}/szerkesztes`} color="light">Szerkesztés</Button>
 	<form method="POST" action="?/delete" use:enhance>
 		<Button color="red" type="submit">
 			{#if data.isDisabled}

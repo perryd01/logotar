@@ -19,8 +19,11 @@ export const load: PageServerLoad = async ({ params }) => {
 		throw error(404, 'Group not found');
 	}
 
+	const form = await superValidate(schema);
+
 	return {
-		...group
+		group,
+		form
 	};
 };
 
@@ -57,7 +60,10 @@ export const actions: Actions = {
 			return error(500, 'Failed to update group');
 		}
 
+		throw redirect(303, `/kategoriak/${updatedGroup.slug}`);
+
 		return {
+			form,
 			data: updatedGroup,
 			success: true
 		};
