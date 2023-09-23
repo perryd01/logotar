@@ -28,7 +28,12 @@ export const load: PageServerLoad = async () => {
 			Team: {
 				name: 'asc'
 			}
+		},
+		where: {
+			content: {
+				not: undefined
+			}
 		}
 	});
-	return { logos: [] };
+	return { logos };
 };
