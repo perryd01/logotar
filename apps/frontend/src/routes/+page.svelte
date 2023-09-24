@@ -47,7 +47,6 @@
 
 				return {
 					teamName: t.name,
-					slug: t.slug,
 					href: `/logok/${t.slug}`,
 					image: getLogoWithParams({
 						host: data.host,
