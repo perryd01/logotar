@@ -63,8 +63,26 @@
 	<button on:click={() => submitSearch()}>Keresés</button>
 </div>
 
-<div class="grid gap-8 my-4" style="grid-template-columns: repeat(auto-fill,minmax(200px,1fr));">
+<div class="grid gap-8 my-4" style="grid-template-columns: repeat(auto-fill,minmax(180px,1fr));">
 	{#each filteredData as logo}
 		<LogoElement groupSlug={logo.Team?.Group.slug} teamSlug={logo.Team?.slug} {logo} />
 	{/each}
 </div>
+
+<style lang="postcss">
+	h1 {
+		@apply text-3xl font-bold mb-8;
+	}
+	input,
+	select {
+		@apply rounded-lg border-0 shadow-md px-4 py-2;
+	}
+
+	select {
+		@apply pr-8;
+	}
+
+	button {
+		@apply p-2 transition-all bg-logotar-primary rounded-lg text-white shadow-md;
+	}
+</style>
