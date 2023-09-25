@@ -1,0 +1,25 @@
+{
+  "name": "cdn",
+  "version": "0.0.2",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fastify/rate-limit": "^8.0.3",
+    "database": "workspace:*",
+    "fastify": "^4.23.2",
+    "zod": "^3.22.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.5.7",
+    "vite": "^4.4.9",
+    "vite-plugin-node": "^3.0.2"
+  }
+}
