@@ -1,6 +1,8 @@
 import fastify from "fastify";
 import { PrismaClient } from "database";
 import { z } from "zod";
+import sharp from "sharp";
+import { MIMETYPES } from "./mime";
 
 declare let PKG: {
   version?: string;
@@ -10,10 +12,17 @@ const assetParamsSchema = z.object({
   group: z.string(),
   team: z.string(),
   name: z.string(),
+  format: z.enum(["svg", "png", "webp"]).default("svg"),
+});
+
+const assetQuerySchema = z.object({
+  size: z.coerce.number().min(32).max(2400).default(320),
 });
 
 const app = async () => {
-  const app = fastify();
+  const app = fastify({
+    logger: true,
+  });
 
   await app.register(import("@fastify/rate-limit"), {
     max: 10000,
@@ -27,35 +36,39 @@ const app = async () => {
     reply.send(`logotar cdn v${PKG.version ?? "???"}`);
   });
 
-  app.get("/health", (_, reply) => {
+  app.get("/health", (req, reply) => {
+    req.log.info("health check at %s", new Date().toISOString());
     reply.send(`ok, uptime: ${(Date.now() - startTime) / 1000} seconds`);
   });
 
-  app.get("/count", async (_, reply) => {
-    const count = await prisma.logo.count();
-    reply.send({ count });
-  });
+  app.get("/assets/:group/:team/:name.:format", async (req, reply) => {
+    const params = req.params as z.infer<typeof assetParamsSchema>;
+    const query = req.query as z.infer<typeof assetQuerySchema>;
 
-  app.get("/assets/:group/:team/:name.svg", async (req, reply) => {
-    const { group, team, name } = req.params as z.infer<
-      typeof assetParamsSchema
-    >;
+    const paramsResult = assetParamsSchema.safeParse(params);
+    const queryResult = assetQuerySchema.safeParse(query);
 
-    const result = assetParamsSchema.safeParse({ group, team, name });
-
-    if (!result.success) {
+    if (!paramsResult.success) {
+      req.log.error(paramsResult.error);
       reply.status(400);
-      reply.send(result.error);
+      reply.send("invalid params");
+      return;
+    }
+
+    if (!queryResult.success) {
+      req.log.error(queryResult.error);
+      reply.status(400);
+      reply.send("invalid query");
       return;
     }
 
     const logo = await prisma.logo.findFirst({
       where: {
-        name,
+        name: params.name,
         Team: {
-          slug: team,
+          slug: params.team,
           Group: {
-            slug: group,
+            slug: params.group,
           },
         },
       },
@@ -63,14 +76,40 @@ const app = async () => {
 
     if (!logo) {
       reply.status(404);
+      reply.send("Not found");
       return;
     }
 
     const content = logo.content.toString();
 
-    reply.header("Content-Type", "image/svg+xml");
-    reply.header("Content-Length", content.length.toString());
-    reply.send(content);
+    if (paramsResult.data.format === "svg") {
+      reply.header("Content-Type", "image/svg+xml");
+      reply.header("Content-Length", content.length.toString());
+      reply.send(content);
+      return;
+    }
+
+    const start = Date.now();
+    const contentBuffer = await sharp(Buffer.from(content))
+      .toFormat(paramsResult.data.format)
+      .resize({
+        width: queryResult.data.size,
+        fit: "contain",
+      })
+      .timeout({
+        seconds: 2,
+      })
+      .toBuffer();
+    const end = Date.now();
+    req.log.debug(
+      `sharp took ${end - start}ms to transform ${logo.name} to ${
+        paramsResult.data.format
+      } at ${queryResult.data.size}px`
+    );
+
+    reply.header("Content-Type", MIMETYPES[paramsResult.data.format]);
+    reply.header("Content-Length", contentBuffer.length.toString());
+    reply.send(contentBuffer);
   });
 
   // @ts-expect-error vite env
