@@ -1,5 +1,16 @@
 # frontend
 
+## 0.1.0
+
+### Minor Changes
+
+- Use new cdn provider for logos.
+
+### Patch Changes
+
+- Updated dependencies
+  - ui@0.1.0
+
 ## 0.0.7
 
 ### Patch Changes
