@@ -3,7 +3,7 @@
 	import type { PageServerData } from './$types';
 	export let data: PageServerData;
 
-	const action = `/kategoriak/${data?.group?.slug}?/edit`;
+	const action = `/groups/${data?.group?.slug}?/edit`;
 </script>
 
 <h1>{data.group.name} kategória szerkesztése</h1>

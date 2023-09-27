@@ -14,15 +14,15 @@
 	const routes = [
 		{
 			name: 'logók',
-			path: '/logok'
+			path: '/logos'
 		},
 		{
 			name: 'körök',
-			path: '/korok'
+			path: '/teams'
 		},
-		{ name: 'kategóriák', path: '/kategoriak' },
-		{ name: 'userek', path: '/felhasznalok' },
-		{ name: 'profilom', path: '/profil' }
+		{ name: 'kategóriák', path: '/groups' },
+		{ name: 'userek', path: '/users' },
+		{ name: 'profilom', path: '/profile' }
 	];
 
 	beforeNavigate((event) => {

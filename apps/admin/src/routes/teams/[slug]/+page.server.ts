@@ -81,7 +81,7 @@ export const actions: Actions = {
 			return error(500, 'Failed to update team');
 		}
 
-		throw redirect(303, `/korok/${updatedTeam.slug}`);
+		throw redirect(303, `/teams/${updatedTeam.slug}`);
 
 		return {
 			form,
@@ -139,7 +139,7 @@ export const actions: Actions = {
 					slug
 				}
 			});
-			throw redirect(303, '/logok');
+			throw redirect(303, '/teams');
 		}
 	}
 };

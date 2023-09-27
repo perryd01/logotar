@@ -73,6 +73,6 @@
 
 {#if form?.status?.success}
 	<p>siker!</p>
-	<a href="/kategoriak">Vissza a kategóriákhoz</a>
-	<a href={`/kategoriak/${form?.status.data.slug}`}>Tovább az új kategóroiához</a>
+	<a href="/groups">Vissza a kategóriákhoz</a>
+	<a href={`/groups/${form?.status.data.slug}`}>Tovább az új kategóroiához</a>
 {/if}

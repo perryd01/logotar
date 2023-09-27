@@ -38,7 +38,7 @@
 	{/if}
 </h1>
 
-<a href={`/kategoriak/${data.Group.slug}`} class="text-logotar-primary underline"
+<a href={`/groups/${data.Group.slug}`} class="text-logotar-primary underline"
 	>{data.Group.nameLong ?? data.Group.name}</a
 >
 

@@ -4,7 +4,7 @@
 	import type { PageServerData } from './$types';
 	export let data: PageServerData;
 
-	const action = `/korok/${data?.team?.slug}?/edit`;
+	const action = `/teams/${data?.team?.slug}?/edit`;
 </script>
 
 <TeamForm {action} {data} />

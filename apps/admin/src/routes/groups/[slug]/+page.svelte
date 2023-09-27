@@ -30,7 +30,7 @@
 <p>csapatok száma: {data.group.teams.length}</p>
 
 <div class="flex flex-row gap-2">
-	<Button href={`/kategoriak/${data.group.slug}/szerkesztes`} color="light">Szerkesztés</Button>
+	<Button href={`/groups/${data.group.slug}/edit`} color="light">Szerkesztés</Button>
 	<form method="POST" action="?/delete" use:enhance>
 		<Button color="red" type="submit">
 			{#if data.group.isDisabled}
@@ -75,7 +75,7 @@
 					{/if}
 				</TableBodyCell>
 				<TableBodyCell>
-					<a href={`/korok/${team.slug}`} class="text-logotar-primary underline">
+					<a href={`/teams/${team.slug}`} class="text-logotar-primary underline">
 						{team.name}
 					</a>
 					{#if team.nameLong}

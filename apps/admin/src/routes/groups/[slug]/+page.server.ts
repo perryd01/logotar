@@ -60,7 +60,7 @@ export const actions: Actions = {
 			return error(500, 'Failed to update group');
 		}
 
-		throw redirect(303, `/kategoriak/${updatedGroup.slug}`);
+		throw redirect(303, `/groups/${updatedGroup.slug}`);
 
 		return {
 			form,
@@ -118,7 +118,7 @@ export const actions: Actions = {
 					slug
 				}
 			});
-			throw redirect(303, '/kategoriak');
+			throw redirect(303, '/groups');
 		}
 	}
 };

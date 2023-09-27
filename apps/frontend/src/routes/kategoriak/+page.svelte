@@ -8,7 +8,7 @@
 
 <ul>
 	{#each data.groups as group}
-		<a href="kategoriak/{group.slug}">
+		<a href="groups/{group.slug}">
 			<li>
 				{group.nameLong ?? group.name}
 			</li>
