@@ -11,5 +11,5 @@ export const getLogoWithParams = ({
   logo,
   team,
 }: GetLogoWithParamsParams) => {
-  return `${host ?? ""}/api/assets/${group}/${team}/${logo}.svg`;
+  return `${host ?? ""}/assets/${group}/${team}/${logo}.svg`;
 };
