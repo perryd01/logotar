@@ -1,9 +1,10 @@
 <script lang="ts">
 	import CategoryPreviewSection from '$lib/components/CategoryPreviewSection.svelte';
 	import { Search } from 'lucide-svelte';
-	import type { PageServerData } from './$types';
+	import type { PageData } from './$types';
+	import { getLogoWithParams } from 'ui';
 
-	export let data: PageServerData;
+	export let data: PageData;
 </script>
 
 <svelte:head>
@@ -48,7 +49,12 @@
 					teamName: t.name,
 					slug: t.slug,
 					href: `/logok/${t.slug}`,
-					image: `/api/assets/${group.slug}/${t.slug}/${logo.name}.svg`
+					image: getLogoWithParams({
+						host: data.host,
+						group: group.slug,
+						team: t.slug,
+						logo: logo.name
+					})
 				};
 			})}
 		/>

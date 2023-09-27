@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { getLogoWithParams } from 'ui';
-	import type { PageServerData } from './$types';
+	import type { PageServerData, PageServerParentData } from './$types';
 	import LogoElement from 'ui/components/LogoElement.svelte';
 	import Modal from 'ui/components/Modal.svelte';
 
-	export let data: PageServerData;
+	export let data: PageServerData & PageServerParentData;
 
 	const sections = [
 		{
@@ -52,6 +52,7 @@
 				<div class="grid gap-8" style="grid-template-columns: repeat(auto-fill,minmax(200px,1fr));">
 					{#each data.Logos.filter((e) => e.type === section.type) ?? [] as logo}
 						<LogoElement
+							host={data.host}
 							groupSlug={data.Group.slug}
 							teamSlug={data.slug}
 							{logo}
