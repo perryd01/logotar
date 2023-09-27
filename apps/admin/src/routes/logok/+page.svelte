@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { getLogoWithParams } from 'ui';
 	import type { PageData } from './$types';
 	import {
 		TableBody,
@@ -45,7 +46,12 @@
 						<img
 							class="w-16 h-16"
 							alt={`${logo.name} logo`}
-							src={`http://localhost:5174/api/assets/${logo.Team?.Group.slug}/${logo.Team?.slug}/${logo.name}.svg`}
+							src={getLogoWithParams({
+								host: data.host,
+								group: logo.Team?.Group.slug ?? '',
+								team: logo.Team?.slug ?? '',
+								logo: logo.name
+							})}
 						/>
 					</a>
 				</TableBodyCell>
