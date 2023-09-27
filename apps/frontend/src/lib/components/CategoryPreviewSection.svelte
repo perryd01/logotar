@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { ComponentProps, ComponentType } from 'svelte';
 	import { TeamElement } from 'ui';
+	import { env } from '$env/dynamic/public';
 
 	type DeepRequired<T> = {
 		[K in keyof T]-?: T[K];

@@ -1,5 +1,11 @@
 # ui
 
+## 0.1.0
+
+### Minor Changes
+
+- Use new cdn provider for logos.
+
 ## 0.0.3
 
 ### Patch Changes

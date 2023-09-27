@@ -9,6 +9,7 @@
     name: string;
     type: "LIGHT" | "DARK";
   };
+  export let host: string = "";
 
   let isDark = logo.type === "DARK";
 
@@ -30,6 +31,7 @@
     <div class:dark={isDark} class="svgContainer" on:click={onClick}>
       <img
         src={getLogoWithParams({
+          host,
           group: groupSlug,
           team: teamSlug,
           logo: logo.name,

@@ -1,9 +1,10 @@
 <script lang="ts">
 	import CategoryPreviewSection from '$lib/components/CategoryPreviewSection.svelte';
 	import { getLogoWithParams } from 'ui';
-	import type { PageServerData } from './$types';
+	import type { PageServerData, PageServerParentData } from './$types';
 
-	export let data: PageServerData;
+	export let data: PageServerData & PageServerParentData;
+	console.log(data);
 </script>
 
 <svelte:head>
@@ -20,9 +21,9 @@
 
 				return {
 					teamName: t.name,
-					slug: t.slug,
 					href: `/logok/${t.slug}`,
 					image: getLogoWithParams({
+						host: data.host,
 						group: group.slug,
 						team: t.slug,
 						logo: logo?.name

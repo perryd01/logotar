@@ -1,5 +1,6 @@
 <script lang="ts">
 	import CategoryPreviewSection from '$lib/components/CategoryPreviewSection.svelte';
+	import { getLogoWithParams } from 'ui';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
@@ -22,7 +23,12 @@
 		return {
 			teamName: t.name,
 			href: `/logok/${t.slug}`,
-			image: `/api/assets/${group.slug}/${t.slug}/${logo.name}.svg`
+			image: getLogoWithParams({
+				host: data.host,
+				group: group.slug,
+				team: t.slug,
+				logo: logo.name
+			})
 		};
 	})}
 />

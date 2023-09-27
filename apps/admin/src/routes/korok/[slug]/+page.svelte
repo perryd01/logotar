@@ -8,11 +8,12 @@
 		TableBodyCell,
 		Button
 	} from 'flowbite-svelte';
-	import type { PageServerData } from './$types';
+	import type { PageData } from './$types';
 	import { Skull } from 'lucide-svelte';
 	import { enhance } from '$app/forms';
+	import { getLogoWithParams } from 'ui';
 
-	export let data: PageServerData;
+	export let data: PageData;
 
 	let logoSearchTerm = '';
 
@@ -67,7 +68,12 @@
 						<img
 							class="w-16 h-16"
 							alt={`${logo.name} logo`}
-							src={`http://localhost:5174/api/assets/${data.Group.slug}/${data.slug}/${logo.name}.svg`}
+							src={getLogoWithParams({
+								host: data.host,
+								group: data.Group.slug,
+								team: data.slug,
+								logo: logo.name
+							})}
 						/>
 					</TableBodyCell>
 					<TableBodyCell>

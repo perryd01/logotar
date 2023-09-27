@@ -4,9 +4,6 @@
 
 	import { browser } from '$app/environment';
 	import { navigating } from '$app/stores';
-
-	$: n = navigating;
-
 	import { version } from '$app/environment';
 </script>
 
