@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { LogoElement } from 'ui';
-	import type { PageServerData } from './$types';
+	import type { PageData } from './$types';
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
 
-	export let data: PageServerData;
+	export let data: PageData;
 
 	let logoType: 'ALL' | 'LIGHT' | 'DARK' = 'ALL';
 	let keyword = '';
@@ -65,7 +65,12 @@
 
 <div class="grid gap-8 my-4" style="grid-template-columns: repeat(auto-fill,minmax(180px,1fr));">
 	{#each filteredData as logo}
-		<LogoElement groupSlug={logo.Team?.Group.slug} teamSlug={logo.Team?.slug} {logo} />
+		<LogoElement
+			host={data.host}
+			groupSlug={logo.Team?.Group.slug}
+			teamSlug={logo.Team?.slug}
+			{logo}
+		/>
 	{/each}
 </div>
 
