@@ -1,5 +1,11 @@
 # admin
 
+## 0.6.1
+
+### Patch Changes
+
+- Bump zod to 3.22.3
+
 ## 0.6.0
 
 ### Minor Changes
