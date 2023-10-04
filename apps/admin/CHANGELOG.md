@@ -1,5 +1,16 @@
 # admin
 
+## 0.6.0
+
+### Minor Changes
+
+- Rename routes to english.
+
+### Patch Changes
+
+- Updated dependencies
+  - ui@0.2.0
+
 ## 0.5.0
 
 ### Minor Changes
