@@ -21,7 +21,7 @@
 
 				return {
 					teamName: t.name,
-					href: `/logok/${t.slug}`,
+					href: `/teams/${t.slug}`,
 					image: getLogoWithParams({
 						host: data.host,
 						group: group.slug,

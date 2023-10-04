@@ -22,7 +22,7 @@
 
 <svelte:head><title>Körök</title></svelte:head>
 
-<a class="link-button" href="/korok/uj">Új csapat hozzáadása</a>
+<a class="link-button" href="/teams/new">Új csapat hozzáadása</a>
 <TableSearch hoverable={true} bind:inputValue={searchTerm}>
 	<TableHead>
 		<TableHeadCell>id</TableHeadCell>
@@ -51,7 +51,7 @@
 					{/if}
 				</TableBodyCell>
 				<TableBodyCell>
-					<a href={`/korok/${team.slug}`} class="text-logotar-primary underline">
+					<a href={`/teams/${team.slug}`} class="text-logotar-primary underline">
 						{team.name}
 					</a>
 					{#if team.nameLong}

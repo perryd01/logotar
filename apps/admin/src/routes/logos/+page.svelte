@@ -26,7 +26,7 @@
 
 <svelte:head><title>Logók</title></svelte:head>
 
-<a class="link-button" href="/logok/uj">Új logó hozzáadása</a>
+<a class="link-button" href="/logos/new">Új logó hozzáadása</a>
 <TableSearch hoverable={true} bind:inputValue={searchTerm}>
 	<TableHead>
 		<TableHeadCell>Logo</TableHeadCell>
@@ -40,7 +40,12 @@
 			<TableBodyRow>
 				<TableBodyCell>
 					<a
-						href={`http://localhost:5174/api/assets/${logo.Team?.Group.slug}/${logo.Team?.slug}/${logo.name}.svg`}
+						href={getLogoWithParams({
+							host: data.host,
+							group: logo.Team?.Group.slug ?? '',
+							team: logo.Team?.slug ?? '',
+							logo: logo.name
+						})}
 						target="_blank"
 					>
 						<img

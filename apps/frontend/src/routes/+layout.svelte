@@ -5,6 +5,28 @@
 	import { browser } from '$app/environment';
 	import { navigating } from '$app/stores';
 	import { version } from '$app/environment';
+
+	let routes = [
+		{
+			name: 'főoldal',
+			path: '/'
+		},
+		{
+			name: 'logók',
+			path: '/teams'
+		},
+		{
+			name: 'kategóriák',
+			path: '/groups'
+		},
+		{
+			name: 'keresés',
+			path: '/search'
+		}
+	] as {
+		name: string;
+		path: string;
+	}[];
 </script>
 
 <svelte:head>
@@ -17,7 +39,7 @@
 </svelte:head>
 
 <div class="font-poppins flex flex-col justify-between min-h-[100svh]">
-	<Header {browser} {navigating} />
+	<Header {browser} {navigating} {routes} />
 	<main class="grow max-w-screen-xl mx-auto w-full px-4 my-16">
 		<slot />
 	</main>

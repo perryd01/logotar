@@ -1,28 +1,26 @@
 <script lang="ts">
 	import type { ActionData, PageData } from './$types';
 	import { superForm } from 'sveltekit-superforms/client';
-
-	import { RefreshCcw } from 'lucide-svelte';
 	import slugify from 'slugify';
-	import TeamForm from '$lib/components/forms/TeamForm.svelte';
+	import GroupForm from '$lib/components/forms/GroupForm.svelte';
 	export let data: PageData;
 	export let form: ActionData;
 </script>
 
 <svelte:head>
-	<title>Új csapat hozzáadása</title>
+	<title>Új kategória hozzáadása</title>
 </svelte:head>
 
-<h1>Új csapat hozzáadása</h1>
+<h1>Új kategória hozzáadása</h1>
 
 {#if !form?.status?.success}
 	<div class="">
-		<TeamForm {data} />
+		<GroupForm {data} />
 	</div>
 {/if}
 
 {#if form?.status?.success}
 	<p>siker!</p>
-	<a href="/korok">Vissza a csapatokhoz</a>
-	<a href={`/korok/${form?.status.data.slug}`}>Tovább az új csapathoz</a>
+	<a href="/groups">Vissza a kategóriákhoz</a>
+	<a href={`/groups/${form?.status.data.slug}`}>Tovább az új kategóroiához</a>
 {/if}
