@@ -16,7 +16,7 @@
     "database": "workspace:*",
     "fastify": "^4.23.2",
     "sharp": "^0.32.6",
-    "zod": "^3.22.2"
+    "zod": "^3.22.3"
   },
   "devDependencies": {
     "@types/node": "^20.5.7",
