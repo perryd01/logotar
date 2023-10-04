@@ -10,19 +10,19 @@
     },
     {
       name: "logók",
-      path: "/logok",
+      path: "/teams",
     },
     {
       name: "kategóriák",
-      path: "/kategoriak",
+      path: "/groups",
     },
     {
       name: "keresés",
-      path: "/kereses",
+      path: "/search",
     },
     {
       name: "gyik",
-      path: "/gyik",
+      path: "/faq",
     },
   ] as {
     name: string;
