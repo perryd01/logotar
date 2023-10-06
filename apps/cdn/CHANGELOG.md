@@ -1,5 +1,11 @@
 # cdn
 
+## 0.1.2
+
+### Patch Changes
+
+- Server-side pagination with filtering on frontend.
+
 ## 0.1.1
 
 ### Patch Changes
