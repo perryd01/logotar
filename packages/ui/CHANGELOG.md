@@ -1,5 +1,11 @@
 # ui
 
+## 0.2.1
+
+### Patch Changes
+
+- Server-side pagination with filtering on frontend.
+
 ## 0.2.0
 
 ### Minor Changes
