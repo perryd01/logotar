@@ -1,38 +1,23 @@
 <script lang="ts">
-	import { page } from '$app/stores';
+	import { navigating, page } from '$app/stores';
 	import { LogoElement } from 'ui';
 	import type { PageData } from './$types';
 	import { goto } from '$app/navigation';
-	import { onMount } from 'svelte';
 	import { Loader2 } from 'lucide-svelte';
 
 	export let data: PageData;
-	let pageLoaded = false;
 
 	let logoType: 'ALL' | 'LIGHT' | 'DARK' = 'ALL';
 	let keyword = '';
+	let limit = String(data.limit ?? 20);
 
 	let timeout: null | NodeJS.Timeout = null;
 	let searching = false;
 
-	onMount(() => {
-		console.log('onMount called');
-		keyword = $page.url.searchParams.get('keyword') ?? '';
-		logoType = ($page.url.searchParams.get('logoType') as 'ALL' | 'LIGHT' | 'DARK' | null) ?? 'ALL';
-		filterData();
-		pageLoaded = true;
-	});
-
-	let filteredData = data.logos;
-
-	function filterData() {
-		filteredData = data.logos
-			.filter((logo) => (logoType === 'ALL' ? true : logoType === logo.type))
-			.filter(
-				(l) =>
-					l.name.toLowerCase().includes(keyword.toLowerCase()) ||
-					l.Team?.name.toLowerCase().includes(keyword.toLowerCase())
-			);
+	$: if ($navigating?.complete && !searching) {
+		if ($page.url.search === '') {
+			keyword = '';
+		}
 	}
 
 	function handleSearch() {
@@ -46,7 +31,6 @@
 			searching = false;
 		}
 
-		filterData();
 		updateUrl();
 		searching = false;
 	}
@@ -55,22 +39,38 @@
 		const newUrl = new URL($page.url);
 		if (keyword) {
 			newUrl?.searchParams?.set('keyword', keyword);
+			newUrl?.searchParams?.delete('skip');
 		} else {
 			newUrl?.searchParams.delete('keyword');
 		}
 		newUrl?.searchParams?.set('logoType', logoType);
+		newUrl?.searchParams?.set('limit', limit);
+		goto(newUrl, {
+			keepFocus: true,
+			invalidateAll: true
+		});
+	}
+
+	function createPaginationUrl(index: number) {
+		const newUrl = new URL($page.url);
+		newUrl?.searchParams?.set('keyword', keyword);
+		newUrl?.searchParams?.set('limit', limit);
+		newUrl?.searchParams?.set('skip', String(data.limit * index));
+		return newUrl.toString();
+	}
+
+	function trackChange(field: 'limit' | 'logoType') {
+		const newUrl = new URL($page.url);
+		if (field === 'logoType') newUrl?.searchParams?.set(field, logoType);
+		if (field === 'limit') {
+			newUrl?.searchParams?.set(field, limit);
+		}
+		newUrl?.searchParams?.delete('skip');
+
 		goto(newUrl, {
 			keepFocus: true
 		});
 	}
-
-	$: logoType,
-		(() => {
-			if (pageLoaded) {
-				filterData();
-				updateUrl();
-			}
-		})();
 </script>
 
 <svelte:head>
@@ -79,32 +79,56 @@
 
 <h1>Keresés</h1>
 
-<div class="flex flex-row gap-2 items-center">
-	<input class="max-w-[15rem]" type="text" bind:value={keyword} on:input={handleSearch} />
+<div class="flex flex-row justify-between">
+	<div class="flex flex-row gap-2 items-center">
+		<input class="max-w-[15rem]" type="text" bind:value={keyword} on:input={handleSearch} />
 
-	<select bind:value={logoType} class="w-fit inline">
-		<option value="ALL">Összes</option>
-		<option value="LIGHT">Világos</option>
-		<option value="DARK">Sötét</option>
-	</select>
+		<select bind:value={logoType} class="w-fit inline" on:change={() => trackChange('logoType')}>
+			<option value="ALL">Összes</option>
+			<option value="LIGHT">Világos</option>
+			<option value="DARK">Sötét</option>
+		</select>
 
-	{#if searching}
-		<Loader2 class="animate-spin" />
-	{/if}
+		{#if searching}
+			<Loader2 class="animate-spin" />
+		{/if}
+	</div>
+	<div>
+		<select bind:value={limit} class="w-fit inline" on:change={() => trackChange('limit')}>
+			<option value="10">10</option>
+			<option value="20">20</option>
+			<option value="50">50</option>
+			<option value="100">100</option>
+		</select>
+	</div>
 </div>
 
 <div class="grid gap-8 my-4" style="grid-template-columns: repeat(auto-fill,minmax(180px,1fr));">
-	{#if pageLoaded}
-		{#each filteredData as logo}
-			<LogoElement
-				host={data.host}
-				groupSlug={logo.Team?.Group.slug}
-				teamSlug={logo.Team?.slug}
-				{logo}
-			/>
-		{/each}
-	{/if}
+	{#each data.logos ?? [] as logo}
+		<LogoElement
+			host={data.host}
+			groupSlug={logo.Team?.Group.slug}
+			teamSlug={logo.Team?.slug}
+			{logo}
+		/>
+	{/each}
 </div>
+
+{#if data.pages > 1}
+	<div class="pagination">
+		{#each Array(data.pages) as _, idx}
+			{@const url = createPaginationUrl(idx)}
+			<a
+				class:active={(data.params.skip && Number(data.params.skip) == data.limit * idx) ||
+					(data.params.skip === 0 && idx === 0)}
+				class="item"
+				href={url}
+			>
+				{idx + 1}
+			</a>
+		{/each}
+	</div>
+{/if}
 
 <style lang="postcss">
 	h1 {
@@ -117,5 +141,16 @@
 
 	select {
 		@apply pr-8;
+	}
+	.pagination {
+		@apply flex flex-row gap-2 items-center justify-center py-8;
+	}
+
+	.pagination > .item {
+		@apply rounded-lg border-0 shadow-md px-4 py-2;
+	}
+
+	.pagination > .active {
+		@apply bg-logotar-primary text-white;
 	}
 </style>

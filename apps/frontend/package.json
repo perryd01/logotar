@@ -36,6 +36,7 @@
 		"config": "workspace:*",
 		"database": "workspace:*",
 		"lucide-svelte": "0.276.0",
-		"ui": "workspace:*"
+		"ui": "workspace:*",
+		"zod": "^3.22.3"
 	}
 }
