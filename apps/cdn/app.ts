@@ -80,6 +80,8 @@ const app = async () => {
       return;
     }
 
+    reply.header("Cache-Control", `public, max-age=${5 * 60}`);
+
     const content = logo.content.toString();
 
     if (paramsResult.data.format === "svg") {

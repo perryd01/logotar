@@ -38,6 +38,7 @@
         })}
         class="object-contain w-full h-full"
         alt={`${logo.name} logo`}
+        loading="lazy"
       />
     </div>
   </div>

@@ -1,6 +1,6 @@
 {
 	"name": "frontend",
-	"version": "0.2.0",
+	"version": "0.3.0",
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",
@@ -36,6 +36,7 @@
 		"config": "workspace:*",
 		"database": "workspace:*",
 		"lucide-svelte": "0.276.0",
-		"ui": "workspace:*"
+		"ui": "workspace:*",
+		"zod": "^3.22.3"
 	}
 }
